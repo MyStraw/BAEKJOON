@@ -14,16 +14,16 @@ public class Main {
 		int N = Integer.parseInt(st.nextToken());
 		int M = Integer.parseInt(st.nextToken());
 
-		int[] num = new int[N];
+		int num = 0;
 		int[] stack = new int[N];
 
 		st = new StringTokenizer(br.readLine());
 		for (int k = 0; k < N; k++) {
-			num[k] = Integer.parseInt(st.nextToken());
+			num = Integer.parseInt(st.nextToken());
 			if (k == 0) {
-				stack[k] = num[k];
+				stack[k] = num;
 			} else {
-				stack[k] = stack[k - 1] + num[k];
+				stack[k] = stack[k - 1] + num;
 			}
 		}
 		for (int k = 0; k < M; k++) {
