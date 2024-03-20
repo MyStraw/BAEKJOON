@@ -17,15 +17,14 @@ public class Main {
 	}
 
 	private static int speedLimit(int limit, int recorded) {
-		int limits = limit;
-		int recordeds = recorded;
+		int overSpeed = recorded - limit;
 
-		if (recordeds - limits >= 1 && recordeds - limits <= 20) {
-			return 100;
-		} else if (recordeds - limits >= 21 && recordeds - limits <= 30) {
-			return 270;
-		} else if (recordeds - limits > 30) {
+		if (overSpeed >= 31) {
 			return 500;
+		} else if (overSpeed >= 21) {
+			return 270;
+		} else if (overSpeed >= 1) {
+			return 100;
 		} else {
 			return 0;
 		}
