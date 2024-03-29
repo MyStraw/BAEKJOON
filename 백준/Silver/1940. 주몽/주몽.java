@@ -1,6 +1,7 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 import java.util.StringTokenizer;
 
 public class Main {
@@ -10,7 +11,6 @@ public class Main {
 
 		int N = Integer.parseInt(br.readLine());
 		int M = Integer.parseInt(br.readLine());
-		// int M = br.read(); //이건 아스키 코드로 나온다
 
 		StringTokenizer st = new StringTokenizer(br.readLine());
 		int joomong[] = new int[N];
@@ -18,12 +18,23 @@ public class Main {
 			joomong[i] = Integer.parseInt(st.nextToken());
 		}
 
+		Arrays.sort(joomong);
+
 		int count = 0;
-		for (int i = 0; i < joomong.length - 1; i++) {
-			for (int j = i + 1; j < joomong.length; j++) {
-				if (joomong[i] + joomong[j] == M) {
-					count++;
-				}
+		int start = 0;
+		int end = joomong.length - 1;
+
+		while (start < end) {
+			int sum = joomong[start] + joomong[end];
+
+			if (sum == M) {
+				count++;
+				start++;
+				end--;
+			} else if (sum < M) {
+				start++;
+			} else {
+				end--;
 			}
 		}
 		System.out.println(count);
