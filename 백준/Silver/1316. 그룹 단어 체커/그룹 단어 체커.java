@@ -1,15 +1,20 @@
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.util.HashSet;
-import java.util.Scanner;
 import java.util.Set;
 
 public class Main {
-	public static void main(String args[]) {
-		Scanner sc = new Scanner(System.in);
-		int N = sc.nextInt();
+	public static void main(String args[]) throws NumberFormatException, IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+		int N = Integer.parseInt(br.readLine());
 		int count = 0;
 		for (int i = 0; i < N; i++) {
 			Set<Character> cc = new HashSet<>();
-			String group = sc.next();
+			String group = br.readLine();
 			for (int j = 0; j < group.length() - 1; j++) {
 				cc.add(group.charAt(j));
 				if (group.charAt(j + 1) != group.charAt(j) && !cc.contains(group.charAt(j + 1))) {
@@ -20,6 +25,8 @@ public class Main {
 				}
 			}
 		}
-		System.out.println(N - count);
+		bw.write(String.valueOf(N - count));
+		bw.flush();
+		bw.close();
 	}
 }
