@@ -8,15 +8,15 @@ public class Main {
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		String S = br.readLine();
-		Set<String> set = new HashSet<>();		
+		Set<String> set = new HashSet<>();
+		int count = 0;
 		for (int i = 1; i <= S.length(); i++) {
 			for (int j = 0; j < S.length() - i + 1; j++) {
-				String sec = S.substring(j, j + i);
-				if (!set.contains(sec)) {
-					set.add(sec);
+				if (set.add(S.substring(j, j + i))) {
+					count++;
 				}
 			}
 		}
-		System.out.println(set.size());
+		System.out.println(count);
 	}
 }
