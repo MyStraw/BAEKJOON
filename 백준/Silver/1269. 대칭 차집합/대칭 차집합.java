@@ -14,25 +14,22 @@ public class Main {
 		int numB = Integer.parseInt(st.nextToken());
 
 		Set<Integer> setA = new HashSet<>();
-		Set<Integer> setB = new HashSet<>();
-		int[] arrA = new int[numA];
 
 		st = new StringTokenizer(br.readLine());
 		for (int i = 0; i < numA; i++) {
 			int a = Integer.parseInt(st.nextToken());
 			setA.add(a);
-			arrA[i] = a;
 		}
 		st = new StringTokenizer(br.readLine());
 
+		int count = 0;
 		for (int i = 0; i < numB; i++) {
 			int b = Integer.parseInt(st.nextToken());
-			setB.add(b);
-			setA.remove(b);
+			if (setA.contains(b)) {
+				count++;
+			}
+
 		}
-		for (int i = 0; i < numA; i++) {
-			setB.remove(arrA[i]);
-		}
-		System.out.println(setA.size() + setB.size());
+		System.out.println(numA + numB - 2 * count);
 	}
 }
