@@ -6,32 +6,18 @@ public class Main {
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-		String phone[] = br.readLine().split(" ");
-
+		String[] phone = br.readLine().split(" ");
 		String B = br.readLine();
 
 		int count = 0;
 
-		for (int i = 0; i < phone.length; i++) {
-			boolean jub = false;
-			if (phone[i].contains(B)) {
-				if (phone[i].length() > B.length()) {
-					for (int j = 0; j < B.length(); j++) {
-						if (B.charAt(j) == phone[i].charAt(j)) {
-							jub = true;
-						} else {
-							jub = false;
-							break;
-						}
-					}
-					if (jub) {
-						count++;
-					}
-				}
+		for (String num : phone) {		
+			if (!num.equals(B) && num.startsWith(B)) {
+				count++;
 			}
 		}
-		System.out.println(count);
 
+		System.out.println(count);
 	}
 
 }
