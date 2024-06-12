@@ -1,6 +1,8 @@
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
@@ -18,7 +20,6 @@ public class Main {
 
 		int[][] map = new int[n][m];
 		int[][] distance = new int[n][m];
-		boolean[][] visited = new boolean[n][m];
 
 		int startX = 0, startY = 0;
 		for (int i = 0; i < n; i++) {
@@ -34,16 +35,16 @@ public class Main {
 			}
 		}
 
-		bfs(startX, startY, map, distance, visited);
-
+		bfs(startX, startY, map, distance);
+		br.close();
 	}
 
-	public static void bfs(int startX, int startY, int[][] map, int[][] distance, boolean[][] visited) {
+	public static void bfs(int startX, int startY, int[][] map, int[][] distance) throws IOException {
+		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 		int n = map.length;
 		int m = map[0].length;
 		Queue<int[]> que = new LinkedList<>();
 		que.offer(new int[] { startX, startY });
-		visited[startX][startY] = true;
 		distance[startX][startY] = 0;
 
 		while (!que.isEmpty()) {
@@ -55,9 +56,8 @@ public class Main {
 				int nx = x + dx[i];
 				int ny = y + dy[i];
 
-				if (nx >= 0 && ny >= 0 && nx < n && ny < m && map[nx][ny] == 1 && !visited[nx][ny]) {
+				if (nx >= 0 && ny >= 0 && nx < n && ny < m && map[nx][ny] == 1 && distance[nx][ny] == -1) {
 					que.offer(new int[] { nx, ny });
-					visited[nx][ny] = true;
 					distance[nx][ny] = distance[x][y] + 1;
 				}
 			}
@@ -65,13 +65,15 @@ public class Main {
 
 		for (int i = 0; i < n; i++) {
 			for (int j = 0; j < m; j++) {
-				if (map[i][j] == 0) {
-					System.out.print("0 ");
-				}  else {
-					System.out.print(distance[i][j] + " ");
+				if (map[i][j] == 0) {					
+					bw.write("0 ");
+				} else {					
+					bw.write(distance[i][j] + " ");
 				}
 			}
-			System.out.println();
+			bw.write("\n");
 		}
+		bw.flush();
+		bw.close();
 	}
 }
