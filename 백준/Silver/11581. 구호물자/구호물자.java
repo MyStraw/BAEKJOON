@@ -13,7 +13,7 @@ public class Main {
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-		int N = Integer.parseInt(br.readLine().trim());
+		int N = Integer.parseInt(br.readLine());
 
 		adjList = new ArrayList<>();
 		for (int i = 0; i <= N; i++) {
@@ -21,8 +21,8 @@ public class Main {
 		}
 
 		for (int u = 1; u < N; u++) {
-			int M = Integer.parseInt(br.readLine().trim());
-			StringTokenizer st = new StringTokenizer(br.readLine().trim());
+			int M = Integer.parseInt(br.readLine());
+			StringTokenizer st = new StringTokenizer(br.readLine());
 
 			for (int i = 1; i <= M; i++) {
 				int v = Integer.parseInt(st.nextToken());
