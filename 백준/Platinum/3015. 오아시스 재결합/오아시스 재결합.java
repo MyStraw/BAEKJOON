@@ -9,7 +9,7 @@ public class Main {
 
 		int N = Integer.parseInt(br.readLine());
 
-		long[] oasis = new long[N];
+		int[] oasis = new int[N];
 
 		for (int i = 0; i < N; i++) {
 			oasis[i] = Integer.parseInt(br.readLine());
@@ -19,8 +19,8 @@ public class Main {
 		long totalCount = 0; // 개별 카운트를 따로 세서 합쳐보자
 
 		for (int i = 0; i < N; i++) {
-			long nowAe = oasis[i];// 현재 내가 잡고있는 애
-			long nowCount = 1;// 지금 잡고있는애 카운트.
+			int nowAe = oasis[i];// 현재 내가 잡고있는 애
+			int nowCount = 1;// 지금 잡고있는애 카운트.
 
 			while (!stack.isEmpty() && stack.peek().nowPerson <= nowAe) {
 				Now top = stack.pop();
@@ -42,10 +42,10 @@ public class Main {
 }
 
 class Now {
-	long nowPerson;
-	long nowCount;
+	int nowPerson;
+	int nowCount;
 
-	Now(long nowPerson, long nowCount) {
+	Now(int nowPerson, int nowCount) {
 		this.nowPerson = nowPerson;
 		this.nowCount = nowCount;
 	}
